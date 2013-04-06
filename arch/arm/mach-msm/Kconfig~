@@ -2078,13 +2078,6 @@ config CLOCK_MAP
 	  clock gets a unique id. If the bitmap has that bit set the clock
 	  is enabled, otherwise the clock is disabled.
 
-config FORCE_FAST_CHARGE
-	bool "Force AC charge mode at will"
-	default y
-	help
-	  A simple sysfs interface to force adapters that
-	  are detected as USB to charge as AC.
-
 config MSM_SLEEP_STATS
 	bool "Enable exporting of MSM sleep stats to userspace"
 	depends on CPU_IDLE
@@ -2356,6 +2349,13 @@ config MSM_DCVS
 	  The DCVS manager allows idle driver to feed the idle information to the
 	  algorithm and the algorithm returns a frequency for the core which is
 	  passed to the frequency change driver.
+
+config FORCE_FAST_CHARGE
+	bool "Force AC charge mode at will"
+	default y
+	help
+	  A simple sysfs interface to force adapters that
+	  are detected as USB to charge as AC.
 
 
 endif
