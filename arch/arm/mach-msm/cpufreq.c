@@ -201,7 +201,7 @@ static int __cpuinit msm_cpufreq_init(struct cpufreq_policy *policy)
 	}
 
 	if (cur_freq != table[index].frequency) {
-+    int newfreq, ret = 0;
+     int newfreq, ret = 0;
      if (table[index].frequency > 1512000) newfreq = 1512000;
      else newfreq = table[index].frequency;
      ret = acpuclk_set_rate(policy->cpu, newfreq, SETRATE_CPUFREQ);

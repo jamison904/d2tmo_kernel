@@ -706,7 +706,7 @@ deps_config := \
 include/config/auto.conf: \
 	$(deps_config)
 
-ifneq "$(KERNELVERSION)" "3.0.31"
+ifneq "$(KERNELVERSION)" "3.0.31_Darkside_"
 include/config/auto.conf: FORCE
 endif
 ifneq "$(ARCH)" "arm"
