@@ -168,6 +168,10 @@ config CPU_FREQ_DEFAULT_GOV_SMARTASS2
  	help
  	 Use the CPUFreq governor 'smartassV2' as default. 
 
+config CPU_FREQ_DEFAULT_GOV_SMARTASSH3
+        bool "smartassH3"
+        select CPU_FREQ_GOV_SMARTASSH3
+
 config CPU_FREQ_DEFAULT_GOV_LAZY
         bool "lazy"
         select CPU_FREQ_GOV_LAZY
@@ -426,6 +430,12 @@ config CPU_FREQ_GOV_SMARTASS2
 	 depends on CPU_FREQ 
 	 help	 	
   	   'smartassV2' - a "smart" optimized governor!
+
+config CPU_FREQ_GOV_SMARTASSH3
+	tristate "'smartassH3' cpufreq governor"
+	depends on CPU_FREQ
+	help
+		'smartassH3' - a "smart" governor
 
 config CPU_FREQ_GOV_MINMAX
 	tristate "'minmax' cpufreq governor"
