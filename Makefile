@@ -1,7 +1,7 @@
 VERSION = 3
 PATCHLEVEL = 0
 SUBLEVEL = 31
-EXTRAVERSION =_Darkside_Apprentice
+EXTRAVERSION =_Darkside_
 NAME = Sneaky Weasel
 
 # *DOCUMENTATION*
