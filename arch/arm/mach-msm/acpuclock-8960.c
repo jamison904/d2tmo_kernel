@@ -86,6 +86,8 @@
 #define QFPROM_PTE_ROW0_MSB	(MSM_QFPROM_BASE + 0x00BC)
 #define QFPROM_PTE_ROW1_LSB	(MSM_QFPROM_BASE + 0x00C0)
 
+#define FREQ_TABLE_SIZE    34
+
 enum scalables {
 	CPU0 = 0,
 	CPU1,
@@ -150,11 +152,11 @@ static struct scalable scalable_8960[] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x200,
 			.aux_clk_sel     = MSM_ACC0_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
-			.vreg[VREG_CORE] = { "krait0",     1300000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_CORE] = { "krait0",     1350000 },
+			.vreg[VREG_MEM]  = { "krait0_mem", 1250000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8921_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait0_dig", 1250000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8921_S3 },
 			.vreg[VREG_HFPLL_A] = { "hfpll", 2100000,
@@ -168,11 +170,11 @@ static struct scalable scalable_8960[] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x300,
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
-			.vreg[VREG_CORE] = { "krait1",     1300000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_CORE] = { "krait1",     1350000 },
+			.vreg[VREG_MEM]  = { "krait0_mem", 1250000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait0_dig", 1250000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_S3 },
 			.vreg[VREG_HFPLL_A] = { "hfpll", 2100000,
@@ -776,6 +778,22 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_slow[] = {
 	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1237500 },
 	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1237500 },
 	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1250000 },
+	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(19), 1175000 },
+	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(19), 1175000 },
+	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(19), 1200000 },
+	{ 1, {  1242000, HFPLL, 1, 0, 0x2E }, L2(19), 1200000 },
+	{ 0, {  1296000, HFPLL, 1, 0, 0x30 }, L2(19), 1225000 },
+	{ 1, {  1350000, HFPLL, 1, 0, 0x32 }, L2(19), 1225000 },
+	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(19), 1237500 },
+	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(19), 1237500 },
+	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(19), 1250000 },
+#ifdef CONFIG_CPU_OVERCLOCK
+	{ 1, {  1620000, HFPLL, 1, 0, 0x3C }, L2(19), 1275000 },
+#ifdef CONFIG_CPU_ULTIMATE
+	{ 1, {  1728000, HFPLL, 1, 0, 0x40 }, L2(19), 1325000 },
+	{ 1, {  1836000, HFPLL, 1, 0, 0x44 }, L2(19), 1350000 },
+#endif
+#endif
 	{ 0, { 0 } }
 };
 
@@ -803,6 +821,22 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_nom[] = {
 	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1187500 },
 	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1187500 },
 	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1200000 },
+	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(19), 1125000 },
+	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(19), 1125000 },
+	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(19), 1150000 },
+	{ 1, {  1242000, HFPLL, 1, 0, 0x2E }, L2(19), 1150000 },
+	{ 0, {  1296000, HFPLL, 1, 0, 0x30 }, L2(19), 1175000 },
+	{ 1, {  1350000, HFPLL, 1, 0, 0x32 }, L2(19), 1175000 },
+	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(19), 1187500 },
+	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(19), 1187500 },
+	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(19), 1200000 },
+#ifdef CONFIG_CPU_OVERCLOCK
+	{ 1, {  1620000, HFPLL, 1, 0, 0x3C }, L2(19), 1225000 },
+#ifdef CONFIG_CPU_ULTIMATE
+	{ 1, {  1728000, HFPLL, 1, 0, 0x40 }, L2(19), 1275000 },
+	{ 1, {  1836000, HFPLL, 1, 0, 0x44 }, L2(19), 1325000 },
+#endif
+#endif
 	{ 0, { 0 } }
 };
 
@@ -830,6 +864,22 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_fast[] = {
 	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1137500 },
 	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1137500 },
 	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1150000 },
+	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(19), 1075000 },
+	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(19), 1075000 },
+	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(19), 1100000 },
+	{ 1, {  1242000, HFPLL, 1, 0, 0x2E }, L2(19), 1100000 },
+	{ 0, {  1296000, HFPLL, 1, 0, 0x30 }, L2(19), 1125000 },
+	{ 1, {  1350000, HFPLL, 1, 0, 0x32 }, L2(19), 1125000 },
+	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(19), 1137500 },
+	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(19), 1137500 },
+	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(19), 1150000 },
+#ifdef CONFIG_CPU_OVERCLOCK
+	{ 1, {  1620000, HFPLL, 1, 0, 0x3C }, L2(19), 1175000 },
+#ifdef CONFIG_CPU_ULTIMATE
+	{ 1, {  1728000, HFPLL, 1, 0, 0x40 }, L2(19), 1225000 },
+	{ 1, {  1836000, HFPLL, 1, 0, 0x44 }, L2(19), 1275000 },
+#endif
+#endif
 	{ 0, { 0 } }
 };
 
@@ -857,6 +907,13 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_f3[] = {
 	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1112500 },
 	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1112500 },
 	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1125000 },
+#ifdef CONFIG_CPU_OVERCLOCK
+	{ 1, {  1620000, HFPLL, 1, 0, 0x3C }, L2(19), 1150000 },
+#ifdef CONFIG_CPU_ULTIMATE
+	{ 1, {  1728000, HFPLL, 1, 0, 0x40 }, L2(19), 1200000 },
+	{ 1, {  1836000, HFPLL, 1, 0, 0x44 }, L2(19), 1250000 },
+#endif
+#endif
 	{ 0, { 0 } }
 };
 
@@ -1604,7 +1661,7 @@ void acpuclk_set_vdd(unsigned int khz, int vdd_uv) {
 #endif	/* CONFIG_CPU_VOTALGE_TABLE */
 
 #ifdef CONFIG_CPU_FREQ_MSM
-static struct cpufreq_frequency_table freq_table[NR_CPUS][30];
+static struct cpufreq_frequency_table freq_table[NR_CPUS][FREQ_TABLE_SIZE];
 
 static void __init cpufreq_table_init(void)
 {
